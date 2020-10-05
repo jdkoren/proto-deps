@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.example.lib";
+
+enum IceCream {
+  UNSPECIFIED = 0;
+  CHOCOLATE = 1;
+  VANILLA = 2;
+}

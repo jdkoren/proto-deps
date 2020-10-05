@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.example.protodep";
+
+import "com/example/lib/ice_cream.proto";
+
+message UserPrefs {
+  IceCream ice_cream = 1;
+  bool sprinkles = 2;
+  bool nuts = 3;
+}

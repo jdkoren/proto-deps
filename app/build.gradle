@@ -1,6 +1,19 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'com.squareup.wire'
+}
+
+wire {
+    kotlin {
+        android = true
+    }
+    protoPath {
+        // Protos in ':lib'. TODO: What's the right way to specify that here instead of this path?
+        srcDir '../lib/src/main/proto'
+    }
+}
 
 android {
     compileSdkVersion 30
@@ -21,6 +34,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    sourceSets {
+        main.java.srcDirs += "$buildDir/generated/source/wire"
+    }
 }
 
 dependencies {
@@ -30,7 +53,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
-    implementation project(path: ':lib')
+    implementation project(':lib')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
