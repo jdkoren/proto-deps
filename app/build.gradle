@@ -9,10 +9,11 @@ wire {
     kotlin {
         android = true
     }
-    protoPath {
-        // Protos in ':lib'. TODO: What's the right way to specify that here instead of this path?
-        srcDir '../lib/src/main/proto'
-    }
+//  TODO: this can work instead of protoPath in dependencies, but it's not ideal...
+//  protoPath {
+//      // Protos in ':lib'
+//      srcDir '../lib/src/main/proto'
+//  }
 }
 
 android {
@@ -54,9 +55,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
     implementation project(':lib')
+    // TODO: this doesn't build
+    protoPath project(':lib')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }
