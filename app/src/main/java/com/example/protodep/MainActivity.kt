@@ -1,6 +1,7 @@
 package com.example.protodep
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -9,5 +10,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val prefs = UserPrefs()
+        Log.d("Test", prefs.ice_cream.name)
     }
 }

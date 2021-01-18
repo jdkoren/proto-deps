@@ -12,6 +12,7 @@ wire {
 
 sourceSets {
     main.java.srcDirs += "$buildDir/generated/source/wire"
+    main.resources.srcDirs += project.file("src/main/proto")
 }
 
 dependencies {
