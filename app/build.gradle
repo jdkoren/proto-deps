@@ -5,17 +5,6 @@ plugins {
     id 'com.squareup.wire'
 }
 
-wire {
-    kotlin {
-        android = true
-    }
-//  TODO: this can work instead of protoPath in dependencies, but it's not ideal...
-//  protoPath {
-//      // Protos in ':lib'
-//      srcDir '../lib/src/main/proto'
-//  }
-}
-
 android {
     compileSdkVersion 30
 
@@ -42,10 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-    sourceSets {
-        main.java.srcDirs += "$buildDir/generated/source/wire"
-        main.resources.srcDirs += project.file("src/main/proto/")
-    }
 }
 
 dependencies {
@@ -55,9 +40,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
+    implementation "com.squareup.wire:wire-runtime:3.6.0"
+
     implementation project(':lib')
     // TODO: this doesn't build
-    protoPath project(':lib')
+    protoPath(project(':lib'))
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
