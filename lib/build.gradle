@@ -4,22 +4,22 @@ plugins {
     id 'com.squareup.wire'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 wire {
     kotlin {
         android = true
     }
-}
-
-sourceSets {
-    main.java.srcDirs += "$buildDir/generated/source/wire"
-    main.resources.srcDirs += project.file("src/main/proto")
+    protoLibrary = true
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    api "com.squareup.wire:wire-runtime:3.4.0"
+    api "com.squareup.wire:wire-runtime:3.6.0"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 }
